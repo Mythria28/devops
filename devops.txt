@@ -188,3 +188,25 @@ spec:
       port: 8080
       targetPort: 8080
       nodePort: 30080
+
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tomcat-web-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: tomcat-web
+  template:
+    metadata:
+      labels:
+        app: tomcat-web
+    spec:
+      containers:
+      - name: tomcat-web
+        image: tomcat:latest
+        ports:
+        - containerPort: 8080
